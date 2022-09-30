@@ -2,7 +2,7 @@ package programmers.level02;
 
 import java.util.Arrays;
 
-// JadenCase 문자열 만들기
+// 이진 변환 반복하기
 public class Ex03 {
 	public static void main(String[] args) throws Exception {
 		Solution s = new Solution();
