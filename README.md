@@ -3,7 +3,7 @@
 
 프로그래머스  
 LEVEL1 52문제  
-LEVEL2 5문제  
+LEVEL2 11문제  
 LEVEL3  
 LEVEL4  
 LEVEL5  
