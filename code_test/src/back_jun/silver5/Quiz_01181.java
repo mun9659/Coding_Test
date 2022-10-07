@@ -3,13 +3,8 @@ package back_jun.silver5;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 // 단어정렬
 // 정답을 봄
@@ -23,7 +18,7 @@ public class Quiz_01181 {
 			arr[i] = br.readLine();
 		}
 		
-		// 이게 Arrays.sort 함수를 읽어보아야한다.
+		// 이게 Arrays.sort 함수와 Comparator를 읽어보아야한다.
 		Arrays.sort(arr, new Comparator<String>() {
 			@Override
 			public int compare(String s1, String s2) {
