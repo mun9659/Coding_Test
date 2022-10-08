@@ -9,7 +9,9 @@ LEVEL4
 LEVEL5  
   
 백준  
-BRONZE3 15문제  
+BRONZE3 15문제
+BRONZE2 6문제  
+BRONZE1 2문제
 SILVER5 4문제
 
 코드업  
