@@ -1,4 +1,4 @@
-package back_jun.bronze3;
+package back_jun.bronze2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
