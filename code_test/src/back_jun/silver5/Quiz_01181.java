@@ -11,7 +11,47 @@ import java.util.Comparator;
 public class Quiz_01181 {
 	public static void main(String[] args) throws IOException  {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
+		int n = Integer.parseInt(br.readLine());
+		String[] arr = new String[n];
+		
+		for(int i = 0; i < n; i++) {
+			arr[i] = br.readLine();
+		}
+		
+		// 기본 형식
+		Arrays.sort(arr, new Comparator<String>() {
+			@Override
+			public int compare(String e1, String e2) {
+				if(e1.length() == e2.length()) {
+					return e1.compareTo(e2);
+				} else {
+					return e1.length() - e2.length();
+				}
+			}
+		});
+		
+		// 람다식으로 해보자
+		/*
+		Arrays.sort(arr, (e1, e2) -> {
+			System.out.println(e1 + " | " + e2);
+			if(e1.length() == e2.length()) {
+				return e1.compareTo(e2); // 사전형식 비교
+			} else {
+				return e1.length() - e2.length(); // 나머지는 전부 길이 비교
+			}
+		});
+		*/
+		
+		for(int i = 0; i < n; i++) {
+			if(!arr[i].equals(arr[i-1])) System.out.println(arr[i]);
+		}
+		
+		
+	}
+}
+
+/*
+int N = Integer.parseInt(br.readLine());
 		String[] arr = new String[N];
 		
 		for(int i = 0; i < N; i++) {
@@ -46,7 +86,5 @@ public class Quiz_01181 {
 		System.out.println(sb);
 		
 		br.close();
-	}
-}
 
-	
+*/
