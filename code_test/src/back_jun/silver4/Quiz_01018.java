@@ -15,83 +15,33 @@ public class Quiz_01018 {
 		
 		int n = Integer.parseInt(st.nextToken());
 		int m = Integer.parseInt(st.nextToken());
-		String[][] board = new String[n][m];
-		
-		// for(int i = 0; i < n; i++) board[i] = br.readLine();
+		String[] chess = {"WBWBWBWB", "BWBWBWBW"};
+	
+		char[][] arr = new char[n][m];
 		
 		for(int i = 0; i < n; i++) {
-			board[i] = br.readLine().split("");
+			arr[i] = br.readLine().toCharArray();
 		}
 		
 		int min = Integer.MAX_VALUE;
-		
-		// 브루프포스 비교
-		// 정순
 		for(int i = 0; i <= n - 8; i++) {
 			for(int j = 0; j <= m - 8; j++) {
-				String[][] board_arr = new String[8][8]; // 8 * 8 로 자른 체스판
-				String[][] board_arr2 = new String[8][8]; // 8 * 8 로 자른 체스판 정상 비교
-				
-				int p = 0, q = 0;
-				for(int k = i; k < i+8; k++) {
-					for(int s = j; s < j+8; s++) {
-						board_arr[p][q++] = board[k][s];
-					}
-					p++;
-					q = 0;
-				}
 				
 				int cnt = 0;
-				board_arr2[0][0] = board_arr[0][0];
-				for(int k = 0; k < 8; k++) {
-					if(k > 0) board_arr2[k][0] = board_arr2[k-1][0].equals("B") ? "W" : "B";
-					for(int s = 1; s < 8; s++) {
-						if(board_arr2[k][s-1].equals("B")) board_arr2[k][s] = "W";
-						else board_arr2[k][s] = "B";
+				for(int k = i; k < i + 8; k++) {
+					int row = i + k;
+					int chk_cnt = 0;
+					for(int s = j; s < j + 8; s++) {
+						if(arr[k][s] != chess[row % 2].charAt(chk_cnt++)) cnt++;
 					}
 				}
-				
-				for(int k = 0; k < 8; k++) {
-					for(int s = 0; s < 8; s++) {
-						if(!board_arr[k][s].equals(board_arr2[k][s])) cnt++;
-					}
-				}
-				
-				// System.out.println(cnt);
-				
-				if(min > Math.min(cnt, 64 - cnt)) min = Math.min(cnt, 64 - cnt);
+				cnt = Math.min(cnt, 64 - cnt);
+				if(min > cnt) min = cnt;
 			}
 		}
 		
 		System.out.println(min);
-		
-		/*
-		int min = Integer.MAX_VALUE;
-		for(int i = 0; i <= n - 8; i++) {
-			for(int j = 0; j <= m - 8; j++) {
-				int culMin = getSolution(i, j, board);
-				if(min > culMin) min = culMin;
-			}
-		}
-		System.out.println(min);
-		*/
 	}
-	
-	/*
-	public static int getSolution(int startRow, int startCol, String[] board) {
-		String[] orgBoard = {"WBWBWBWB", "BWBWBWBW"};
-		int whiteSol = 0;
-		for(int i = 0; i < 8; i++) {
-			int row = startRow + i;
-			for(int j = 0; j < 8; j++) {
-				int col = startCol + j;
-				if(board[row].charAt(col) != orgBoard[row % 2].charAt(j)) whiteSol++;
-			}
-		}
-		
-		return Math.min(whiteSol, 64 - whiteSol);
-	}
-	*/
 }
 
 /*
