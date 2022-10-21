@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
 // 좌표 정렬하기
@@ -12,31 +13,6 @@ import java.util.StringTokenizer;
 public class Quiz_11650 {
 	public static void main(String[] args) throws IOException  {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
-		int[][] arr = new int[N][2];
-		for(int i = 0; i < N; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			arr[i][0] = Integer.parseInt(st.nextToken());
-			arr[i][1] = Integer.parseInt(st.nextToken());
-		}
-		
-		// 예상은 했지만 람다식은 예상 못함
-		Arrays.sort(arr, (e1, e2) -> {
-			if(e1[0] == e2[0]) {
-				return e1[1] - e2[1];
-			} else {
-				return e1[0] - e2[0];
-			}
-		});
-		
-		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < N; i++) {
-			sb.append(arr[i][0] + " " + arr[i][1]).append("\n");
-		}
-		
-		System.out.println(sb);
-		
-		br.close();
 	}
 }
 
@@ -79,6 +55,34 @@ public class Quiz_11650 {
 		for(int i = 0; i < arr_x.size(); i++) {
 			System.out.printf("%d %d\n", arr_x.get(i), arr_y.get(i));
 		}
+		
+		br.close();
+		
+	// 2. 정답
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		int[][] arr = new int[N][2];
+		for(int i = 0; i < N; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+			arr[i][0] = Integer.parseInt(st.nextToken());
+			arr[i][1] = Integer.parseInt(st.nextToken());
+		}
+		
+		// 예상은 했지만 람다식은 예상 못함
+		Arrays.sort(arr, (e1, e2) -> {
+			if(e1[0] == e2[0]) {
+				return e1[1] - e2[1];
+			} else {
+				return e1[0] - e2[0];
+			}
+		});
+		
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < N; i++) {
+			sb.append(arr[i][0] + " " + arr[i][1]).append("\n");
+		}
+		
+		System.out.println(sb);
 		
 		br.close();
 */

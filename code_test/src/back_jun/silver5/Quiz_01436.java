@@ -10,6 +10,21 @@ public class Quiz_01436 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
 		
+		int cnt = 0, num = 666;
+		while(cnt != n) {
+			if(String.valueOf(num).contains("666")) {
+				cnt++;
+			}
+			num++;
+		}
+		
+		System.out.println(num - 1);
+	}
+}
+
+/*
+int n = Integer.parseInt(br.readLine());
+		
 		int i = 666, cnt = 0;
 		while(cnt < n) {
 			if(String.valueOf(i).contains("666")) {
@@ -18,5 +33,4 @@ public class Quiz_01436 {
 			i++;
 		}
 		System.out.println(i - 1);
-	}
-}
+*/
