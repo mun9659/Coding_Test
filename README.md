@@ -1,5 +1,5 @@
 # Coding_Test
-## 백준_프로그래머스_코드업 코딩테스트
+## 백준_프로그래머스_SWEA 코딩테스트
 
 프로그래머스  
 LEVEL1 52문제  
@@ -17,4 +17,6 @@ SILVER4 7문제
 SILVER3 5문제  
 SILVER2 2문제
 
-코드업  
+SWEA(Software Expert Academy)  
+D2 25문제  
+D3 8문제
