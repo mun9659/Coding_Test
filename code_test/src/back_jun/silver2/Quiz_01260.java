@@ -10,91 +10,69 @@ import java.util.StringTokenizer;
 
 // DFS와 BFS
 public class Quiz_01260 {
-	static Queue<Integer> que = new LinkedList<>();
-	static Stack<Integer> stack = new Stack<>();
-	static int n, m, v;
-	static int[][] node;
-	static boolean[] visited;
-	static StringBuilder sb = new StringBuilder("");
+	
+	public static StringBuilder sb = new StringBuilder();
+	public static Queue<Integer> que = new LinkedList<>();
+	
+	public static int n, m, v;
+	public static int[][] nodes;
+	public static boolean[] visited;
 	
 	public static void main(String[] args) throws IOException  {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
+		
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
 		v = Integer.parseInt(st.nextToken());
 		
-		node = new int[n+1][n+1];
-		visited = new boolean[n+1];
+		nodes = new int[n + 1][n + 1];
+		visited = new boolean[n + 1];
 		
-		for(int i = 1; i <= m; i++) {
+		for(int i = 0; i < m; i++) {
 			st = new StringTokenizer(br.readLine());
-			int k = Integer.parseInt(st.nextToken());
-			int s = Integer.parseInt(st.nextToken());
-			node[k][s]++;
+			
+			int n1 = Integer.parseInt(st.nextToken());
+			int n2 = Integer.parseInt(st.nextToken());
+			
+			nodes[n1][n2]++;
 		}
 		
-		dfs2(v);
+		dfs1(v);
 		sb.append("\n");
 		
-		visited = new boolean[n+1];
+		visited = new boolean[n + 1];
 		bfs(v);
 		
 		System.out.println(sb);
-		
 	}
 	
-	// 재귀 방식
-	static void dfs(int v) {
+	// 재귀방식 DFS
+	public static void dfs1(int v) {
 		visited[v] = true;
-		
 		sb.append(v).append(" ");
 		
-		for(int i = 1; i <= n; i++) {
-			if((node[v][i] == 1 || node[i][v] == 1) && !visited[i]) {
-				dfs(i);
+		for(int i = 1; i < nodes.length; i++) {
+			if(!visited[i] && (nodes[v][i] == 1 || nodes[i][v] == 1)) {
+				dfs1(i);
 			}
 		}
 	}
 	
-	// 스택 방식
-	static void dfs2(int v) {
-		stack.push(v);
+	// BFS
+	public static void bfs(int v) {
 		visited[v] = true;
 		
-		sb.append(v).append(" ");
-		
-		while(!stack.isEmpty()) {
-			int k = stack.peek();
-			
-			boolean hasNearNode = false;
-			for(int i = 1; i <= n; i++) {
-				if((node[k][i] == 1 || node[i][k] == 1) && !visited[i]) {
-					hasNearNode = true;
-					visited[i] = true;
-					stack.push(i);
-					sb.append(i).append(" ");
-					break;
-				}
-			}
-			if(!hasNearNode) stack.pop();
-		}
-	}
-	
-	static void bfs(int v) {
 		que.offer(v);
-		visited[v] = true;
-		
 		sb.append(v).append(" ");
-		
 		while(!que.isEmpty()) {
-			int k = que.poll();
+			int start = que.poll();
 			
-			for(int i = 1; i <= n; i++) {
-				if((node[k][i] == 1 || node[i][k] == 1) && !visited[i]) {
+			for(int i = 1; i < nodes.length; i++) {
+				if(!visited[i] && (nodes[start][i] == 1 || nodes[i][start] == 1)) {
 					visited[i] = true;
-					sb.append(i).append(" ");
 					que.offer(i);
+					sb.append(i).append(" ");
 				}
 			}
 		}
