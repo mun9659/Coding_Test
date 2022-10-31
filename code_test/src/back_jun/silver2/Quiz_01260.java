@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 public class Quiz_01260 {
 	
 	public static StringBuilder sb = new StringBuilder();
+	public static Stack<Integer> stack = new Stack<>();
 	public static Queue<Integer> que = new LinkedList<>();
 	
 	public static int n, m, v;
@@ -38,7 +39,8 @@ public class Quiz_01260 {
 			nodes[n1][n2]++;
 		}
 		
-		dfs1(v);
+		//dfs1(v);
+		dfs2(v);
 		sb.append("\n");
 		
 		visited = new boolean[n + 1];
@@ -56,6 +58,29 @@ public class Quiz_01260 {
 			if(!visited[i] && (nodes[v][i] == 1 || nodes[i][v] == 1)) {
 				dfs1(i);
 			}
+		}
+	}
+	
+	// 스택방식 DFS
+	public static void dfs2(int v) {
+		visited[v] = true;
+		
+		stack.push(v);
+		sb.append(v).append(" ");
+		while(!stack.isEmpty()) {
+			int start = stack.peek();
+			
+			boolean hasNearNode = false;
+			for(int i = 1; i < nodes.length; i++) {
+				if(!visited[i] && (nodes[start][i] == 1 || nodes[i][start] == 1)) {
+					visited[i] = true;
+					hasNearNode = true;
+					stack.push(i);
+					sb.append(i).append(" ");
+					break;
+				}
+			}
+			if(!hasNearNode) stack.pop();
 		}
 	}
 	
