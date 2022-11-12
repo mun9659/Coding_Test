@@ -14,34 +14,30 @@ public class Quiz_06064 {
 		StringBuilder sb = new StringBuilder();
 		
 		int t = Integer.parseInt(br.readLine());
-		
-		for(int i = 0; i < t; i++) {
+		for(int tc = 0; tc < t; tc++) {
 			st = new StringTokenizer(br.readLine());
 			
-			int m = Integer.parseInt(st.nextToken());
-			int n = Integer.parseInt(st.nextToken());
+			int M = Integer.parseInt(st.nextToken());
+			int N = Integer.parseInt(st.nextToken());
 			int x = Integer.parseInt(st.nextToken());
 			int y = Integer.parseInt(st.nextToken());
 			
-			int ans = -1;
-			int cnt = 0;
-			int max = m * n / gcd(m, n);
-			while(cnt * m < max) {
-				if((cnt * m + x - y) % n == 0) {
-					ans = cnt * m + x;
+			int max = (M * N) / gcd(M, N);
+			int count = 1, result = -1;
+			while((M * count) <= max) {
+				if((x + M * count) % N == y) {
+					result = x + M * count;
 					break;
 				}
-				cnt++;
+				count++;
 			}
-			sb.append(ans + "\n");
+			System.out.println(result);
 		}
-		System.out.println(sb);
 	}
 	
+	// 최대공약수
 	public static int gcd(int a, int b) {
-		if(b == 0) {
-			return a;
-		}
+		if(b == 0) return a;
 		return gcd(b, a % b);
 	}
 }
