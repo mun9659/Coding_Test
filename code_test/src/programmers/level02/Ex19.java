@@ -2,7 +2,7 @@ package programmers.level02;
 
 import java.util.LinkedList;
 
-// 멀리 뛰기
+// 캐시
 // 뻘짓했음, 좋은건 LinkedList로 비교해서 빼면 되었다.
 public class Ex19 {
 	public static void main(String[] args) throws Exception {
