@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-// N과 M (1)
-// 정답을 봄
+// N과 M (3)
 // 백트래킹
-public class Quiz_15649 {
+public class Quiz_15651 {
 	
 	public static int n, m;
 	public static int[] arr;
-	public static boolean[] visited;
 	public static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws IOException  {
@@ -23,7 +21,6 @@ public class Quiz_15649 {
 		m = Integer.parseInt(st.nextToken());
 		
 		arr = new int[m];
-		visited = new boolean[n];
 		
 		dfs(0);
 		
@@ -39,15 +36,10 @@ public class Quiz_15649 {
 			return;
 		}
 		
+		// 중복된 값도 포함되서 나오기에 boolean 체크가 없다!
 		for(int i = 0; i < n; i++) {
-			if(!visited[i]) {
-				arr[index] = i + 1;
-				visited[i] = true;
-				dfs(index + 1); // 배열 인덱스 변경
-				visited[i] = false;
-			}
+			arr[index] = i + 1;
+			dfs(index + 1);
 		}
 	}
 }
-
-	

@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-// N과 M (1)
-// 정답을 봄
+// N과 M (4)
 // 백트래킹
-public class Quiz_15649 {
+public class Quiz_15652 {
 	
 	public static int n, m;
 	public static int[] arr;
-	public static boolean[] visited;
 	public static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws IOException  {
@@ -23,7 +21,6 @@ public class Quiz_15649 {
 		m = Integer.parseInt(st.nextToken());
 		
 		arr = new int[m];
-		visited = new boolean[n];
 		
 		dfs(0);
 		
@@ -40,14 +37,15 @@ public class Quiz_15649 {
 		}
 		
 		for(int i = 0; i < n; i++) {
-			if(!visited[i]) {
+			if(index > 0) {
+				if(i >= arr[index - 1] - 1) {
+					arr[index] = i + 1;
+					dfs(index + 1);
+				}
+			} else {
 				arr[index] = i + 1;
-				visited[i] = true;
-				dfs(index + 1); // 배열 인덱스 변경
-				visited[i] = false;
+				dfs(index + 1);
 			}
 		}
 	}
 }
-
-	

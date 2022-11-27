@@ -5,10 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-// N과 M (1)
-// 정답을 봄
+// N과 M (2)
 // 백트래킹
-public class Quiz_15649 {
+public class Quiz_15650 {
 	
 	public static int n, m;
 	public static int[] arr;
@@ -25,12 +24,12 @@ public class Quiz_15649 {
 		arr = new int[m];
 		visited = new boolean[n];
 		
-		dfs(0);
+		dfs(0, 0);
 		
 		System.out.println(sb);
 	}
 	
-	public static void dfs(int index) {
+	public static void dfs(int index, int num) {
 		if(index == m) {
 			for(int i = 0; i < m; i++) {
 				sb.append(arr[i]).append(" ");
@@ -40,14 +39,12 @@ public class Quiz_15649 {
 		}
 		
 		for(int i = 0; i < n; i++) {
-			if(!visited[i]) {
+			if(!visited[i] && i >= num) { // 앞 인덱스 값보다 더 높아야 하기 때문에
 				arr[index] = i + 1;
 				visited[i] = true;
-				dfs(index + 1); // 배열 인덱스 변경
+				dfs(index + 1, i + 1);
 				visited[i] = false;
 			}
 		}
 	}
 }
-
-	
