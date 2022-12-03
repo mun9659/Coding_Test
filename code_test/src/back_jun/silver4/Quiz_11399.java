@@ -13,21 +13,21 @@ public class Quiz_11399 {
 		StringTokenizer st;
 		
 		int n = Integer.parseInt(br.readLine());
-		
-		int[] t_arr = new int[n + 1]; // 시간 배열
-		int[] dp = new int[n + 1];
-		
 		st = new StringTokenizer(br.readLine());
-		for(int i = 1; i <= n; i++) {
-			t_arr[i] = Integer.parseInt(st.nextToken());
+		
+		int[] arr = new int[n];
+		for(int i = 0; i < n; i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		Arrays.sort(t_arr);
-		int sum = 0;
-		for(int i = 1; i <= n; i++) {
-			dp[i] = t_arr[i] + dp[i - 1];
-			sum += dp[i];
+		Arrays.sort(arr);
+		
+		int result = 0, sum = 0;
+		for(int val : arr) {
+			sum += val;
+			result += sum;
 		}
-		System.out.println(sum);
+		
+		System.out.println(result);
 	}
 }
