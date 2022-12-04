@@ -3,6 +3,9 @@ package back_jun.silver4;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.StringTokenizer;
 
 // 동전 0
@@ -11,26 +14,22 @@ public class Quiz_11047 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		int n = Integer.parseInt(st.nextToken());
-		int k = Integer.parseInt(st.nextToken());
+		int n = Integer.parseInt(st.nextToken()); // 동전의 종류 개수
+		int k = Integer.parseInt(st.nextToken()); // 가치의 합
 		
-		int[] coins = new int[n];
+		List<Integer> n_arr = new ArrayList<>();
 		
 		for(int i = 0; i < n; i++) {
-			coins[i] = Integer.parseInt(br.readLine());
+			n_arr.add(Integer.parseInt(br.readLine()));
 		}
 		
-		int cnt = 0;
+		n_arr.sort(Comparator.reverseOrder());
+		
+		int count = 0, idx = 0;
 		while(k != 0) {
-			for(int i = n - 1; i >= 0; i--) {
-				int coin = coins[i];
-				if(k < coin) continue;
-				else {
-					cnt += k / coin;
-					k %= coin;
-				}
-			}
+			count += k / n_arr.get(idx);
+			k %= n_arr.get(idx++);
 		}
-		System.out.println(cnt);
+		System.out.println(count);
 	}
 }
