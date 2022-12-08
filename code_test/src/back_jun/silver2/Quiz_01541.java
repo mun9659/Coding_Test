@@ -9,24 +9,21 @@ public class Quiz_01541 {
 	
 	public static void main(String[] args) throws IOException  {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String str = br.readLine();
-		String[] str_arr = str.split("\\-"); // 마이너스만 구분
+		String[] str = br.readLine().split("-");
 		
-		int min = 0;
-		for(int i = 0; i < str_arr.length; i++) {
-			String[] arr = str_arr[i].split("\\+");
+		int result = 0;
+		for(int i = 0; i < str.length; i++) {
+			String[] str_arr = str[i].split("\\+");
 			if(i == 0) {
-				for(int j = 0; j < arr.length; j++) {
-					min += Integer.parseInt(arr[j]);
+				for(int j = 0; j < str_arr.length; j++) {
+					result += Integer.parseInt(str_arr[j]);
 				}
-			}
-			else {
-				for(int  j = 0; j < arr.length; j++) {
-					min -= Integer.parseInt(arr[j]);
+			} else {
+				for(int j = 0; j < str_arr.length; j++) {
+					result -= Integer.parseInt(str_arr[j]);
 				}
 			}
 		}
-		
-		System.out.println(min);
+		System.out.println(result);
 	}
 }
