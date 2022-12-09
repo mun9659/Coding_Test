@@ -13,11 +13,12 @@ import java.util.StringTokenizer;
 public class Quiz_16953 {
 	
 	static class Node {
-		long num;
-		int count;
-		public Node(long num, int count) {
-			this.num = num;
-			this.count = count;
+		long number;
+		int index;
+		
+		public Node(long number, int index) {
+			this.number = number;
+			this.index = index;
 		}
 	}
 	
@@ -34,30 +35,36 @@ public class Quiz_16953 {
 	public static void bfs(long a, long b) {
 		Queue<Node> que = new LinkedList<>();
 		que.add(new Node(a, 1));
+		
 		while(!que.isEmpty()) {
 			Node node = que.poll();
-			long val = node.num;
-			int count = node.count;
-			if(val == b) {
-				System.out.println(count);
+			long number = node.number;
+			int index = node.index;
+			
+			if(number == b) {
+				System.out.println(index);
 				return;
 			}
+			
 			for(int i = 1; i <= 2; i++) {
 				// 1. 2를 곱한다.
-				long n = 0;
 				if(i == 1) {
-					n = val * 2;
-					if(n > b) continue;
-				} 
-				// 2. 1을 수의 가장 오른족에 추가한다.
-				else {
-					n = Long.parseLong(String.valueOf(val) + "1");
-					if(n > b) continue;
+					long val = number * 2;
+					if(val > b) continue;
+					que.add(new Node(val, index + 1));
 				}
-				que.add(new Node(n, count + 1));
+				// 2. 1을 수의 가장 오른쪽에 추가한다.
+				else {
+					long val = Long.parseLong(String.valueOf(number) + "1");
+					if(val > b) continue;
+					que.add(new Node(val, index + 1));
+				}
 			}
 		}
-		System.out.println(-1);
-		return;
+		
+		if(que.isEmpty()) {
+			System.out.println(-1);
+			return;
+		}
 	}
 }
