@@ -20,9 +20,9 @@ public class Quiz_11053 {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		// Bottom-Up 방식
+		// Bottom-Up 방식!
 		for(int i = 0; i < n; i++) {
-			dp[i] = 1;
+			dp[i] = 1; // 가장 긴 증가하는 부분 수열의 최소 길이
 			
 			for(int j = 0; j < n; j++) {
 				if(arr[j] < arr[i] && dp[i] < dp[j] + 1) {
@@ -30,7 +30,6 @@ public class Quiz_11053 {
 				}
 			}
 		}
-		
 		int max = 0;
 		for(int val : dp) {
 			max = Math.max(val, max);

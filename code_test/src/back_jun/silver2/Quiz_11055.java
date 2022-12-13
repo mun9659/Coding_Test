@@ -21,20 +21,19 @@ public class Quiz_11055 {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		dp[0] = arr[0];
+		int max = 0;
 		
-		// Bottom-Up
-		// dp[i] : '부분' 증가 수열에서 'i번째 항'이 '최댓값'인 부분증가수열의 누적합
-		for(int i = 0; i < n; i++) {
+		dp[0] = arr[0];
+		max = dp[0];
+		for(int i = 1; i < n; i++) {
 			dp[i] = arr[i];
-			for(int j = 0; j < n; j++) {
-				if(arr[i] > arr[j]) {
-					dp[i] = Math.max(dp[j] + arr[i], dp[i]);
+			for(int j = 0; j < i; j++) {
+				if(arr[j] < arr[i]) {
+					dp[i] = Math.max(dp[i], dp[j] + arr[i]);
 				}
 			}
 		}
 		
-		int max = Integer.MIN_VALUE;
 		for(int val : dp) {
 			max = Math.max(val, max);
 		}

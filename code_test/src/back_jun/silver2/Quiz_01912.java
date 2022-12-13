@@ -13,23 +13,28 @@ public class Quiz_01912 {
 		StringTokenizer st;
 		
 		int n = Integer.parseInt(br.readLine());
-		st = new StringTokenizer(br.readLine());
 		
 		int[] arr = new int[n];
 		int[] dp = new int[n];
+		
+		st = new StringTokenizer(br.readLine());
 		for(int i = 0; i < n; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
 		
+		int max = 0;
+		
+		dp[0] = arr[0];
+		max = dp[0];
 		
 		// Bottom-Up 방식
-		int max = 0;
-		dp[0] = max = arr[0];
 		for(int i = 1; i < n; i++) {
 			dp[i] = Math.max(dp[i - 1] + arr[i], arr[i]);
+		}
+
+		for(int i = 0; i < n; i++) {
 			max = Math.max(max, dp[i]);
 		}
-		
 		System.out.println(max);
 	}
 }
