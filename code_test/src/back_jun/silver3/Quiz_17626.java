@@ -12,21 +12,19 @@ public class Quiz_17626 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
 		
-		int[] arr = new int[n+1];
+		int[] dp = new int[n + 1];
 		
-		arr[1] = 1;
+		dp[1] = 1;
 		
 		for(int i = 2; i < n + 1; i++) {
-			arr[i] = n + 1;
+			dp[i] = n + 1;
 		}
 		
-		// 점화식 구현에 머리를 잘 쓰자.
 		for(int i = 2; i < n + 1; i++) {
 			for(int j = 1; j * j <= i; j++) {
-				arr[i] = Math.min(arr[i], arr[i - j * j] + 1);
+				dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
 			}
 		}
-		
-		System.out.println(arr[n]);
+		System.out.println(dp[n]);
 	}
 }
